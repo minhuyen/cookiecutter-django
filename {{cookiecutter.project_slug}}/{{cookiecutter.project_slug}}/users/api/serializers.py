@@ -16,8 +16,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = ('pk', 'username', 'email', 'avatar', 'first_name',
-                  'last_name', 'referral_code', 'referrer',
-                  'bommers', 'lives', 'best_score')
+                  'last_name')
         read_only_fields = ('email', )
 
 
