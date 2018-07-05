@@ -66,6 +66,10 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.humanize', # Handy template tags
     'django.contrib.admin',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
+    'smart_selects',
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',
@@ -274,3 +278,24 @@ STATICFILES_FINDERS += ['compressor.finders.CompressorFinder']
 {%- endif %}
 # Your stuff...
 # ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+REST_USE_JWT = False
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': '{{ cookiecutter.project_slug }}.users.api.serializers.UserDetailSerializer',
+    'TOKEN_SERIALIZER': '{{ cookiecutter.project_slug }}.users.api.serializers.CustomTokenSerializer'
+}
+
+# smart select
+USE_DJANGO_JQUERY = True
