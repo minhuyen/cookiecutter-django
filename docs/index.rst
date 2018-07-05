@@ -24,8 +24,6 @@ Contents:
    docker-postgres-backups
    faq
    troubleshooting
-   my-favorite-cookie
-   deployment-with-elastic-beanstalk   
 
 Indices and tables
 ==================
