@@ -1,7 +1,7 @@
-{% if cookiecutter.use_sentry == 'y' - %}
+{% if cookiecutter.use_sentry == 'y' -%}
 import logging
 
-{% endif - %}
+{% endif -%}
 from .base import *  # noqa
 from .base import env
 
@@ -33,7 +33,7 @@ CACHES = {
     }
 }
 
-{% if cookiecutter.use_s3 == 'y' - %}
+{% if cookiecutter.use_s3 == 'y' -%}
 # STORAGES
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/#installation
@@ -52,23 +52,23 @@ _AWS_EXPIRY = 60 * 60 * 24 * 7
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': f'max-age={_AWS_EXPIRY}, s-maxage={_AWS_EXPIRY}, must-revalidate',
 }
-{% endif - %}
+{% endif -%}
 
 # STATIC
 # ------------------------
-{% if cookiecutter.use_whitenoise == 'y' - %}
+{% if cookiecutter.use_whitenoise == 'y' -%}
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-{%- else % }
+{%- else %}
 STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
 STATIC_URL = f'https://s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/static/'
-{%- endif % }
+{%- endif %}
 
 # MEDIA
 # ------------------------------------------------------------------------------
-{% if cookiecutter.use_whitenoise == 'y' - %}
+{% if cookiecutter.use_whitenoise == 'y' -%}
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = f'https://s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/'
-{%- else % }
+{%- else %}
 # region http://stackoverflow.com/questions/10390244/
 from storages.backends.s3boto3 import S3Boto3Storage  # noqa E402
 
@@ -82,7 +82,7 @@ def MediaRootS3BotoStorage(): return S3Boto3Storage(location='media', file_overw
 # endregion
 DEFAULT_FILE_STORAGE = 'config.settings.production.MediaRootS3BotoStorage'
 MEDIA_URL = f'https://s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/media/'
-{%- endif % }
+{%- endif %}
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -129,14 +129,14 @@ ANYMAIL = {
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ['gunicorn']  # noqa F405
 
-{% if cookiecutter.use_whitenoise == 'y' - %}
+{% if cookiecutter.use_whitenoise == 'y' -%}
 # WhiteNoise
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#enable-whitenoise
 MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware'] + MIDDLEWARE  # noqa F405
 
 {% endif % }
-{ % - if cookiecutter.use_compressor == 'y' - %}
+{%- if cookiecutter.use_compressor == 'y' -%}
 # django-compressor
 # ------------------------------------------------------------------------------
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
@@ -146,16 +146,16 @@ COMPRESS_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
 COMPRESS_URL = STATIC_URL
 
-{% endif % }
-{ % - if cookiecutter.use_whitenoise == 'n' - %}
+{% endif %}
+{%- if cookiecutter.use_whitenoise == 'n' -%}
 # Collectfast
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation
 INSTALLED_APPS = ['collectfast'] + INSTALLED_APPS  # noqa F405
 AWS_PRELOAD_METADATA = True
 
-{% endif % }
-{ % - if cookiecutter.use_sentry == 'y' - %}
+{% endif %}
+{%- if cookiecutter.use_sentry == 'y' -%}
 # raven
 # ------------------------------------------------------------------------------
 # https://docs.sentry.io/clients/python/integrations/django/
@@ -219,7 +219,7 @@ RAVEN_CONFIG = {
     'dsn': SENTRY_DSN
 }
 
-{%- else % }
+{%- else %}
 # LOGGING
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
@@ -268,6 +268,6 @@ LOGGING = {
     }
 }
 
-{% endif % }
+{% endif %}
 # Your stuff...
 # ------------------------------------------------------------------------------
