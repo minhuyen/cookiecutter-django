@@ -129,13 +129,13 @@ ANYMAIL = {
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ['gunicorn']  # noqa F405
 
-{% if cookiecutter.use_whitenoise == 'y' -%}
+{%- if cookiecutter.use_whitenoise == 'y' -%}
 # WhiteNoise
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#enable-whitenoise
 MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware'] + MIDDLEWARE  # noqa F405
 
-{% endif % }
+{% endif %}
 {%- if cookiecutter.use_compressor == 'y' -%}
 # django-compressor
 # ------------------------------------------------------------------------------
