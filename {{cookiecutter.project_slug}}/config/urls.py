@@ -23,9 +23,9 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path("api-auth/", include('rest_framework.urls')),
-    path("api/auth/", include("rest_auth.urls")),
-    path("api/auth/signup/", include('rest_auth.registration.urls')),
-    path("docs/", include_docs_urls(title="{{ cookiecutter.project_name }} API")),
+    path("api/v1/auth/", include("rest_auth.urls")),
+    path("api/v1/auth/signup/", include('rest_auth.registration.urls')),
+    path("docs/", include_docs_urls(title="{{ cookiecutter.project_name }} API", public=False)),
     path("chaining/", include('smart_selects.urls')),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
