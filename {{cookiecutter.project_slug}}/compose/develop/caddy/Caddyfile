@@ -1,7 +1,7 @@
 0.0.0.0:80 {
     proxy / django:5000 {
         transparent
-        except /media /static
+        except /media
     }
 
     root /var/www

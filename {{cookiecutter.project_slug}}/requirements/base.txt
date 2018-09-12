@@ -32,6 +32,7 @@ django-redis==4.9.0  # https://github.com/niwinz/django-redis
 djangorestframework==3.8.2  # https://github.com/encode/django-rest-framework
 coreapi==2.3.3  # https://github.com/core-api/python-client
 django-rest-auth==0.9.3 # https://github.com/Tivix/django-rest-auth
+django-filter==1.1.0
 markdown==2.6.11
 djangorestframework-jwt==1.11.0
 drf-base64==0.9.4 # https://bitbucket.org/levit_scs/drf_base64

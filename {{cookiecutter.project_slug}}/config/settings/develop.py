@@ -78,11 +78,13 @@ def StaticRootS3BotoStorage(): return S3Boto3Storage(location='static')  # noqa
 
 def MediaRootS3BotoStorage(): return S3Boto3Storage(location='media', file_overwrite=False)  # noqa
 
+{%- endif %}
 
+{% if cookiecutter.use_s3 == 'y' -%}
 # endregion
 DEFAULT_FILE_STORAGE = 'config.settings.production.MediaRootS3BotoStorage'
 MEDIA_URL = f'https://s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/media/'
-{%- endif %}
+{% endif -%}
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
