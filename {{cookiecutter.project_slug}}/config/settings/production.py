@@ -206,8 +206,8 @@ LOGGING = {
     },
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s '
-                      '%(process)d %(thread)d %(message)s'
+            'format': '[%(asctime)s] %(levelname)-8s [%(name)s:%(lineno)s] %(message)s',
+            'datefmt': '%m/%d/%Y %H:%M:%S',
         },
     },
     'handlers': {
@@ -242,6 +242,11 @@ LOGGING = {
             'handlers': ['console', 'sentry'],
             'propagate': False,
         },
+        '{{cookiecutter.project_slug}}': {
+            'level': 'DEBUG',
+            'handlers': ['console', ],
+            'propagate': False,
+        }
     },
 }
 
@@ -269,8 +274,8 @@ LOGGING = {
     },
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s '
-                      '%(process)d %(thread)d %(message)s'
+            'format': '[%(asctime)s] %(levelname)-8s [%(name)s:%(lineno)s] %(message)s',
+            'datefmt': '%m/%d/%Y %H:%M:%S',
         },
     },
     'handlers': {
@@ -295,6 +300,11 @@ LOGGING = {
             'level': 'ERROR',
             'handlers': ['console', 'mail_admins'],
             'propagate': True
+        },
+        '{{cookiecutter.project_slug}}': {
+            'level': 'DEBUG',
+            'handlers': ['console', ],
+            'propagate': False,
         }
     }
 }
