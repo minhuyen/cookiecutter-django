@@ -232,23 +232,19 @@ def set_flags_in_envs(
     celery_flower_user,
     debug=False,
 ):
-    local_django_envs_path = os.path.join(".envs", ".local", ".django")
-    production_django_envs_path = os.path.join(".envs", ".production", ".django")
-    local_postgres_envs_path = os.path.join(".envs", ".local", ".postgres")
-    production_postgres_envs_path = os.path.join(".envs", ".production", ".postgres")
+    envs_list = ['.local', '.develop', '.production']
+    for env in envs_list:
+        django_envs_path = os.path.join(".envs", env, ".django")
+        postgres_envs_path = os.path.join(".envs", env, ".postgres")
 
-    set_django_secret_key(production_django_envs_path)
-    set_django_admin_url(production_django_envs_path)
+        if env != '.local':
+            set_django_secret_key(django_envs_path)
+            set_django_admin_url(django_envs_path)
 
-    set_postgres_user(local_postgres_envs_path, value=postgres_user)
-    set_postgres_password(local_postgres_envs_path, value=DEBUG_VALUE if debug else None)
-    set_postgres_user(production_postgres_envs_path, value=postgres_user)
-    set_postgres_password(production_postgres_envs_path, value=DEBUG_VALUE if debug else None)
-
-    set_celery_flower_user(local_django_envs_path, value=celery_flower_user)
-    set_celery_flower_password(local_django_envs_path, value=DEBUG_VALUE if debug else None)
-    set_celery_flower_user(production_django_envs_path, value=celery_flower_user)
-    set_celery_flower_password(production_django_envs_path, value=DEBUG_VALUE if debug else None)
+        set_postgres_user(postgres_envs_path, value=postgres_user)
+        set_postgres_password(postgres_envs_path, value=DEBUG_VALUE if debug else None)
+        set_celery_flower_user(django_envs_path, value=celery_flower_user)
+        set_celery_flower_password(django_envs_path, value=DEBUG_VALUE if debug else None)
 
 
 def set_flags_in_settings_files():
@@ -263,6 +259,7 @@ def remove_envs_and_associated_files():
 
 def remove_celery_compose_dirs():
     shutil.rmtree(os.path.join("compose", "local", "django", "celery"))
+    shutil.rmtree(os.path.join("compose", "develop", "django", "celery"))
     shutil.rmtree(os.path.join("compose", "production", "django", "celery"))
 
 
