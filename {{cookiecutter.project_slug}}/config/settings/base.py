@@ -34,6 +34,15 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 
+LANGUAGES = [
+    ('en', _('English')),
+    ('vi', _('Vietnam')),
+]
+
+LOCALE_PATHS = [
+    str(ROOT_DIR('locale')),
+]
+
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
