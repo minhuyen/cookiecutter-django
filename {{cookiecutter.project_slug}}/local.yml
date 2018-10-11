@@ -6,6 +6,7 @@ volumes:
 
 services:
   django:{% if cookiecutter.use_celery == 'y' %} &django{% endif %}
+    restart: on-failure
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile

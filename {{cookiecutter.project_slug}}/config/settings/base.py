@@ -75,10 +75,6 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.humanize', # Handy template tags
     'django.contrib.admin',
-    'rest_framework.authtoken',
-    'rest_auth',
-    'rest_auth.registration',
-    'smart_selects',
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',
@@ -87,6 +83,10 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',
     'rest_framework',
     'django_filters',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
+    'smart_selects',
 ]
 LOCAL_APPS = [
     '{{ cookiecutter.project_slug }}.users.apps.UsersAppConfig',
