@@ -32,10 +32,7 @@ DEBUG_VALUE = "debug"
 
 
 def remove_open_source_files():
-    file_names = [
-        "CONTRIBUTORS.txt",
-        "LICENSE",
-    ]
+    file_names = ["CONTRIBUTORS.txt", "LICENSE"]
     for file_name in file_names:
         os.remove(file_name)
 
@@ -71,7 +68,10 @@ def remove_utility_files():
 def remove_heroku_files():
     file_names = ["Procfile", "runtime.txt", "requirements.txt"]
     for file_name in file_names:
-        if file_name == "requirements.txt" and "{{ cookiecutter.use_travisci }}".lower() == "y":
+        if (
+            file_name == "requirements.txt"
+            and "{{ cookiecutter.use_travisci }}".lower() == "y"
+        ):
             # don't remove the file if we are using travisci but not using heroku
             continue
         os.remove(file_name)
@@ -183,11 +183,7 @@ def generate_postgres_user(debug=False):
 
 
 def set_postgres_user(file_path, value):
-    postgres_user = set_flag(
-        file_path,
-        "!!!SET POSTGRES_USER!!!",
-        value=value,
-    )
+    postgres_user = set_flag(file_path, "!!!SET POSTGRES_USER!!!", value=value)
     return postgres_user
 
 
@@ -205,9 +201,7 @@ def set_postgres_password(file_path, value=None):
 
 def set_celery_flower_user(file_path, value):
     celery_flower_user = set_flag(
-        file_path,
-        "!!!SET CELERY_FLOWER_USER!!!",
-        value=value,
+        file_path, "!!!SET CELERY_FLOWER_USER!!!", value=value
     )
     return celery_flower_user
 
@@ -266,6 +260,10 @@ def remove_celery_compose_dirs():
     shutil.rmtree(os.path.join("compose", "production", "django", "celery"))
 
 
+def remove_node_dockerfile():
+    shutil.rmtree(os.path.join("compose", "local", "node"))
+
+
 def main():
     debug = "{{ cookiecutter.debug }}".lower() == "y"
 
@@ -299,8 +297,8 @@ def main():
         if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
             print(
                 INFO + ".env(s) are only utilized when Docker Compose and/or "
-                       "Heroku support is enabled so keeping them does not "
-                       "make sense given your current setup." + TERMINATOR
+                "Heroku support is enabled so keeping them does not "
+                "make sense given your current setup." + TERMINATOR
             )
         remove_envs_and_associated_files()
     else:
@@ -312,21 +310,8 @@ def main():
     if "{{ cookiecutter.js_task_runner}}".lower() == "none":
         remove_gulp_files()
         remove_packagejson_file()
-    if (
-        "{{ cookiecutter.js_task_runner }}".lower() != "none"
-        and "{{ cookiecutter.use_docker }}".lower() == "y"
-    ):
-        print(
-            WARNING
-            + "Docker and {} JS task runner ".format(
-                "{{ cookiecutter.js_task_runner }}".lower().capitalize()
-            )
-            + "working together not supported yet. "
-              "You can continue using the generated project like you "
-              "normally would, however you would need to add a JS "
-              "task runner service to your Docker Compose configuration "
-              "manually." + TERMINATOR
-        )
+        if "{{ cookiecutter.use_docker }}".lower() == "y":
+            remove_node_dockerfile()
 
     if "{{ cookiecutter.use_celery }}".lower() == "n":
         remove_celery_app()
