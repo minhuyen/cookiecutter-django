@@ -34,6 +34,18 @@
     "GCP",
     "None"
   ],
+  "mail_service": [
+    "Mailgun",
+    "Amazon SES",
+    "Mailjet",
+    "Mandrill",
+    "Postmark",
+    "Sendgrid",
+    "SendinBlue",
+    "SparkPost",
+    "Other SMTP"
+  ],
+  "use_drf": "n",
   "custom_bootstrap_compilation": "n",
   "use_compressor": "n",
   "use_celery": "n",
@@ -42,7 +54,11 @@
   "use_s3": "n",
   "use_whitenoise": "n",
   "use_heroku": "n",
-  "use_travisci": "n",
+  "ci_tool": [
+    "None",
+    "Travis",
+    "Gitlab"
+  ],
   "keep_local_envs_in_vcs": "y",
   "debug": "n"
 }

@@ -1,10 +1,13 @@
 from django.conf import settings
-from django.urls import include, path
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.urls import include, path
 from django.views import defaults as default_views
 from rest_framework.documentation import include_docs_urls
+from django.views.generic import TemplateView
+{%- if cookiecutter.use_drf == 'y' %}
+from rest_framework.authtoken.views import obtain_auth_token
+{%- endif %}
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -22,9 +25,16 @@ urlpatterns = [
     path("api/v1/auth/signup/", include('rest_auth.registration.urls')),
     path("docs/", include_docs_urls(title="{{ cookiecutter.project_name }} API", public=False)),
     path("chaining/", include('smart_selects.urls')),
-] + static(
-    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+{% if cookiecutter.use_drf == 'y' -%}
+# API URLS
+urlpatterns += [
+    # API base url
+    path("api/", include("config.api_router")),
+    # DRF auth token
+    path("auth-token/", obtain_auth_token),
+]
+{%- endif %}
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

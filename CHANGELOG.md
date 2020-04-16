@@ -1,6 +1,53 @@
 # Change Log
 All enhancements and patches to Cookiecutter Django will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [2020-04-13]
+### Changed
+- Updated to Python 3.8 (@codnee)
+- Moved converage config in setup.cfg (@danihodovic)
+
+## [2020-04-08]
+### Fixed
+- Internal IPs for debug toolbar (@dudanogueira)
+
+## [2020-04-04]
+### Fixed
+- Added compress command command with Django compressor (@gwiskur)
+
+## [2020-03-23]
+### Changed
+- Updated project to Django 3.0
+
+## [2020-03-17]
+### Changed
+- Handle paths using Pathlib (@jules-ch)
+
+### Fixed
+- Pre-commit hook regex (@demestav)
+
+## [2020-03-16]
+### Added
+- Support for all Anymail providers (@Andrew-Chen-Wang)
+### Fixed
+- Django compressor setup (@jameswilliams1)
+
+## [2020-01-23]
+### Changed
+- Fix UserFactory to set the password if provided (@BoPeng)
+- Update documentation files with latest Sphinx (@howiezhao)
+
+## [2020-01-12]
+### Changed
+- Fix mypy setup and added django-stubs (@danifus)
+- Add Gitlab CI as option (@ikhomutov)
+
+## [2020-01-11]
+### Changed
+- Speed up & reduce size for production Django image (@maxp)
+- Bumped runtime version for Heroku (@Isaac12x)
+- Added Debian 10 (Buster) OS dependencies (@ddiazpinto)
+- Update Traefik to v2 (@blaxpy)
+- Switched Docker images from Alpine based to Debian based (@trungdong)
 
 ## [2019-10-06]
 ### Changed

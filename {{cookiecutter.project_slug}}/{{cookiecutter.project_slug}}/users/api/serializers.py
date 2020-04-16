@@ -25,3 +25,13 @@ class CustomTokenSerializer(TokenSerializer):
 
     class Meta(TokenSerializer.Meta):
         fields = TokenSerializer.Meta.fields + ('user', )
+
+
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ["username", "email", "name", "url"]
+
+#         extra_kwargs = {
+#             "url": {"view_name": "api:user-detail", "lookup_field": "username"}
+#         }
