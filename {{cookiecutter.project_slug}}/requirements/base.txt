@@ -41,7 +41,7 @@ django-filter==2.2.0 # https://github.com/carltongibson/django-filter
 markdown==3.1.1 # https://pypi.org/project/Markdown/
 djangorestframework-jwt==1.11.0
 drf-base64==0.9.4 # https://bitbucket.org/levit_scs/drf_base64
-
+{%- endif %}
 # Smart Select
 #django-smart-selects==1.5.4 # https://github.com/digi604/django-smart-selects
 -e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart-selects

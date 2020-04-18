@@ -276,8 +276,8 @@ LOGGING = {
     "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
     "formatters": {
         "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s "
-            "%(process)d %(thread)d %(message)s"
+           'format': '[%(asctime)s] %(levelname)-8s [%(name)s:%(lineno)s] %(message)s',
+            'datefmt': '%m/%d/%Y %H:%M:%S',
         }
     },
     "handlers": {
@@ -316,10 +316,10 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": True,
     "formatters": {
-        "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s "
-            "%(process)d %(thread)d %(message)s"
-        }
+        'verbose': {
+            'format': '[%(asctime)s] %(levelname)-8s [%(name)s:%(lineno)s] %(message)s',
+            'datefmt': '%m/%d/%Y %H:%M:%S',
+        },
     },
     "handlers": {
         "console": {

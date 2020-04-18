@@ -52,6 +52,12 @@ def remove_pycharm_files():
     if os.path.exists(docs_dir_path):
         shutil.rmtree(docs_dir_path)
 
+def remove_vscode_files():
+    idea_dir_path = ".vscode"
+    if os.path.exists(idea_dir_path):
+        shutil.rmtree(idea_dir_path)
+
+
 
 def remove_docker_files():
     shutil.rmtree("compose")
@@ -315,6 +321,9 @@ def main():
 
     if "{{ cookiecutter.use_pycharm }}".lower() == "n":
         remove_pycharm_files()
+
+    if "{{ cookiecutter.use_vscode }}".lower() == "n":
+        remove_vscode_files()
 
     if "{{ cookiecutter.use_docker }}".lower() == "y":
         remove_utility_files()
