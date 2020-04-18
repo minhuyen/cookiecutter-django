@@ -44,7 +44,7 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = [
-    str(ROOT_DIR('locale')),
+    str(ROOT_DIR / 'locale'),
 ]
 
 # DATABASES
