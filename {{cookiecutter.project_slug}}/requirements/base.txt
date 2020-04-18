@@ -35,13 +35,10 @@ django-redis==4.11.0  # https://github.com/niwinz/django-redis
 {%- if cookiecutter.use_drf == "y" %}
 # Django REST Framework
 djangorestframework==3.11.0  # https://github.com/encode/django-rest-framework
-coreapi==2.3.3  # https://github.com/core-api/python-client
+uritemplate==3.0.1
 django-rest-auth==0.9.5 # https://github.com/Tivix/django-rest-auth
 django-filter==2.2.0 # https://github.com/carltongibson/django-filter
 markdown==3.1.1 # https://pypi.org/project/Markdown/
 djangorestframework-jwt==1.11.0
 drf-base64==0.9.4 # https://bitbucket.org/levit_scs/drf_base64
 {%- endif %}
-# Smart Select
-#django-smart-selects==1.5.4 # https://github.com/digi604/django-smart-selects
--e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart-selects

@@ -6,10 +6,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 {%- endif %}
 from django.urls import include, path
 from django.views import defaults as default_views
-from rest_framework.documentation import include_docs_urls
 from django.views.generic import TemplateView
 {%- if cookiecutter.use_drf == 'y' %}
+# from rest_framework.documentation import include_docs_urls
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.schemas import get_schema_view
 {%- endif %}
 
 urlpatterns = [
@@ -26,8 +27,6 @@ urlpatterns = [
     path("api-auth/", include('rest_framework.urls')),
     path("api/v1/auth/", include("rest_auth.urls")),
     path("api/v1/auth/signup/", include('rest_auth.registration.urls')),
-    path("docs/", include_docs_urls(title="{{ cookiecutter.project_name }} API", public=False)),
-    path("chaining/", include('smart_selects.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 {%- if cookiecutter.use_async == 'y' %}
 if settings.DEBUG:
@@ -41,6 +40,11 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # DRF auth token
     path("auth-token/", obtain_auth_token),
+     # path("docs/", include_docs_urls(title="{{ cookiecutter.project_name }} API", public=False))
+    path('openapi', get_schema_view(
+        title="Your Project",
+        description="API for all things …"
+    ), name='openapi-schema'),
 ]
 {%- endif %}
 

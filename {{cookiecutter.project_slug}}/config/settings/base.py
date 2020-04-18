@@ -84,18 +84,15 @@ THIRD_PARTY_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rest_framework',
-    'django_filters',
-    'rest_framework.authtoken',
-    'rest_auth',
-    'rest_auth.registration',
-    'smart_selects',
 {%- if cookiecutter.use_celery == 'y' %}
     "django_celery_beat",
 {%- endif %}
 {%- if cookiecutter.use_drf == "y" %}
-    "rest_framework",
-    "rest_framework.authtoken",
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
+    'rest_auth',
+    'rest_auth.registration',
 {%- endif %}
 ]
 
