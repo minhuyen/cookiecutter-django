@@ -342,6 +342,11 @@ LOGGING = {
             "handlers": ["console"],
             "propagate": False,
         },
+        '{{cookiecutter.project_slug}}': {
+            'level': 'DEBUG',
+            'handlers': ['console', ],
+            'propagate': False,
+        }
     },
 }
 
